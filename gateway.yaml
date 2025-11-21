@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: employees
+          uri: http://employees-api:8081
+          predicates:
+            - Path=/api/v1/employees/**
+
+        - id: workstations
+          uri: http://workstations-api:8082
+          predicates:
+            - Path=/api/v1/workstations/**

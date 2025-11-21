@@ -1,0 +1,8 @@
+server:
+    port: 8081
+spring:
+    application:
+        name: employees-api
+custom:
+  service-name: "employees-api"
+  message: "Config loaded from Git"
