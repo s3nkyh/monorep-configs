@@ -22,6 +22,8 @@ spring:
         port: 8081
 
 management:
+  server:
+    port: 8081
   endpoints:
     web:
       exposure:
