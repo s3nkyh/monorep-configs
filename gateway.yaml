@@ -4,15 +4,28 @@ server:
 spring:
   application:
     name: gateway
-  cloud:
-    gateway:
-      routes:
-        - id: employees
-          uri: http://employees-api:8081
-          predicates:
-            - Path=/api/v1/employees/**
 
-        - id: workstations
-          uri: http://workstations-api:8082
-          predicates:
-            - Path=/api/v1/workstations/**
+  cloud:
+    config:
+      uri: http://localhost:8888
+      fail-fast: true
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        register: true
+        prefer-ip-address: true
+
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
